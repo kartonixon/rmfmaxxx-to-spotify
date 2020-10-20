@@ -9,7 +9,7 @@ from collections import Counter
 
 os.environ['SPOTIPY_CLIENT_ID'] = config.SPOTIFY_CLIENT_ID
 os.environ['SPOTIPY_CLIENT_SECRET'] = config.SPOTIFY_CLIENT_SECRET
-os.environ['SPOTIPY_REDIRECT_URI'] = config.SPOTIPY_REDIRECT_URI
+os.environ['SPOTIPY_REDIRECT_URI'] = config.SPOTIFY_REDIRECT_URI
 
 songs = []
 main_url = 'https://www.rmfmaxxx.pl/muzyka/playlista/'
@@ -30,7 +30,8 @@ for i in reversed(range(0, 24)):
         for artist_a in artists_div.find_all('a'):
             artists.append(artist_a.text)
 
-        songs.append(title + ' ' + artists[0])
+        if artists:
+            songs.append(title + ' ' + artists[0])
 
 print('Scraped {} songs from {}'.format(len(songs), main_url))
 
@@ -46,14 +47,13 @@ for song in most_popular_songs:
         spotify_song_id = results['tracks']['items'][0]['id']
         spotify_song_ids.append(spotify_song_id)
 
-# n < 100, 100 is max value for one request
-n_of_songs = 25
+n_of_songs = config.NUMBER_OF_SONGS
 most_popular_song_ids = spotify_song_ids[:n_of_songs]
 
 user_id = sp.me()['id']
 
 playlist_name = 'RMF Maxxx Top {} {}'.format(len(most_popular_song_ids), datetime.today().strftime('%d-%m-%Y'))
-playlist_description = 'Python goes brrr'
+playlist_description = 'Created using https://github.com/kartonixon/rmfmaxxx-to-spotify'
 playlist_public = True
 
 sp.user_playlist_create(user_id, playlist_name, playlist_public, False, playlist_description)
