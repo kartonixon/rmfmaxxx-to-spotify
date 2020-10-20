@@ -1,5 +1,9 @@
 # RMF Maxxx to Spotify
 
+![](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fkartonixon%2Frmfmaxxx-to-spotify&count_bg=%2379C83D&title_bg=%23555555&icon=github.svg&icon_color=%23E7E7E7&title=visits&edge_flat=false)
+![](https://img.shields.io/github/issues/kartonixon/rmfmaxxx-to-spotify)
+![](https://img.shields.io/github/license/kartonixon/rmfmaxxx-to-spotify)
+
 > Listen to the most popular songs from RMF Maxxx radio station without ads!
 
 This awesome script scraps the radio station's website and collects data about the songs that were played during the last 24 hours. After processing collected data, it creates a Spotify playlist from the most frequently played ones.
